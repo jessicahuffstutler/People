@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 /**
@@ -11,14 +12,17 @@ public class People {
     public static void main(String[] args) {
         String fileContent = readFile("people.csv");
         String[] peopleContent = fileContent.split("\n");
-        HashMap<String, ArrayList<Persons>> people = new HashMap();
+        HashMap<String, ArrayList<Person>> people = new HashMap();
 
         for (String personName : peopleContent) { //for (int i = 1; i < lines.length; i++)
             String[] column = personName.split(",");
+            String firstName = column[1];
             String lastName = column[2];
+            String email = column[3];
             String country = column[4];
-            Persons p = new Persons(lastName, country);
-            ArrayList<Persons> list = people.get(lastName);
+            String ipAddress = column [5];
+            Person p = new Person(firstName, lastName, email, country, ipAddress);
+            ArrayList<Person> list = people.get(lastName);
             if(list == null) {
                 list = new ArrayList();
                 list.add(p);
@@ -27,7 +31,10 @@ public class People {
                 list.add(p);
             }
 
-            System.out.println(list);
+            ArrayList<Person> lastList = people.get(lastName);
+
+            Collections.sort(lastList); //??????????????? lastName, people, person, etc all FAIL
+            System.out.println(String.format("%s %s lives in %s.", firstName, lastName, country));
         }
     }
 
@@ -43,29 +50,4 @@ public class People {
             return null;
         }
     }
-
-    static void writeFile(String fileName, String fileContent) {
-        File f = new File(fileName);
-        try {
-            FileWriter fw = new FileWriter(f);
-            fw.write(fileContent);
-            fw.close();
-        } catch (Exception e) {
-
-        }
-    }
-
-    //static void savePerson() {
-    //    File f = new File("save.json"); //json library wants you to set getters for anything you want to save
-    //    JsonSerializer serializer = new JsonSerializer();
-    //    String contentToSave = serializer.serialize(country);
-
-    //    try {
-    //        FileWriter fw = new FileWriter(f);
-    //        fw.write(contentToSave);
-    //        fw.close();
-    //    } catch (Exception e) {
-    //            System.out.println("Save not successful.");
-    //    }
-    //}
 }
