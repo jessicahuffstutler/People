@@ -19,6 +19,10 @@ public class Person implements Comparable {
         this.ipAddress = ipAddress;
     }
 
+    public String toString() {
+        return String.format("%s %s lives in %s \n", firstName, lastName, country);
+    }
+
     public String getFirstName() {
         return firstName;
     }

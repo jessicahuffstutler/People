@@ -1,6 +1,5 @@
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -14,8 +13,8 @@ public class People {
         String[] peopleContent = fileContent.split("\n");
         HashMap<String, ArrayList<Person>> people = new HashMap();
 
-        for (String personName : peopleContent) { //for (int i = 1; i < lines.length; i++)
-            String[] column = personName.split(",");
+        for (String content : peopleContent) { //for (int i = 1; i < lines.length; i++)
+            String[] column = content.split(",");
             String firstName = column[1];
             String lastName = column[2];
             String email = column[3];
@@ -31,11 +30,10 @@ public class People {
                 list.add(p);
             }
 
-            ArrayList<Person> lastList = people.get(lastName);
-
-            Collections.sort(lastList); //??????????????? lastName, people, person, etc all FAIL
-            System.out.println(String.format("%s %s lives in %s.", firstName, lastName, country));
+            Collections.sort(list);
         }
+
+        System.out.println(people.toString());
     }
 
     static String readFile(String fileName) {
