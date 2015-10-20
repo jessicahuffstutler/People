@@ -3,6 +3,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by jessicahuffstutler on 10/19/15.
@@ -13,24 +14,26 @@ public class People {
         String[] peopleContent = fileContent.split("\n");
         HashMap<String, ArrayList<Person>> people = new HashMap();
 
-        for (String content : peopleContent) { //for (int i = 1; i < lines.length; i++)
-            String[] column = content.split(",");
+        for (int i = 1; i < peopleContent.length; i++) { //for (String content : peopleContent)
+            String[] column = peopleContent[i].split(",");
             String firstName = column[1];
             String lastName = column[2];
             String email = column[3];
             String country = column[4];
             String ipAddress = column [5];
             Person p = new Person(firstName, lastName, email, country, ipAddress);
-            ArrayList<Person> list = people.get(lastName);
+            ArrayList<Person> list = people.get(country);
             if(list == null) {
                 list = new ArrayList();
                 list.add(p);
-                people.put(lastName, list);
+                people.put(country, list);
             } else {
                 list.add(p);
             }
 
-            Collections.sort(list);
+            for (ArrayList<Person> peeps : people.values()) {
+                Collections.sort(peeps);
+            }
         }
 
         System.out.println(people.toString());

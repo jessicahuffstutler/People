@@ -20,7 +20,7 @@ public class Person implements Comparable {
     }
 
     public String toString() {
-        return String.format("%s %s lives in %s \n", firstName, lastName, country);
+        return String.format("%s %s lives in %s.\n", firstName, lastName, country);
     }
 
     public String getFirstName() {
