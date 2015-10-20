@@ -19,9 +19,11 @@ public class Person implements Comparable {
         this.ipAddress = ipAddress;
     }
 
+    @Override
     public String toString() {
-        return String.format("%s %s lives in %s.\n", firstName, lastName, country);
+        return String.format("%s %s lives in %s.", firstName, lastName, country);
     }
+    //this will ensure that you actually get names instead of person@24535...etc
 
     public String getFirstName() {
         return firstName;

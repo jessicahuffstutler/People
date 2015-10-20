@@ -10,11 +10,23 @@ import java.util.Map;
  */
 public class People {
     public static void main(String[] args) {
-        String fileContent = readFile("people.csv");
-        String[] peopleContent = fileContent.split("\n");
+        String fileContent = readFile("people.csv"); //reading the file called people.csv
+        String[] peopleContent = fileContent.split("\n"); //reading the entire file and then splitting it up
         HashMap<String, ArrayList<Person>> people = new HashMap();
 
-        for (int i = 1; i < peopleContent.length; i++) { //for (String content : peopleContent)
+//        int index = 0 //alternative to the for loop below to skip the first line from the csv file
+//        for (String line lines) {
+//            if (index !=0) {
+//            }
+//        }
+
+//        for (String line : lines){ //2nd alternative to the below to skip first line in csv file
+//            if (line == lines[0]){
+//                continue;
+//            }
+//        }
+
+        for (int i = 1; i < peopleContent.length; i++) { //for (String content : peopleContent); for loop
             String[] column = peopleContent[i].split(",");
             String firstName = column[1];
             String lastName = column[2];
@@ -36,7 +48,7 @@ public class People {
             }
         }
 
-        System.out.println(people.toString());
+        System.out.println(people); //System.out.println(people.toString()); the ".toString" isnt necessary
     }
 
     static String readFile(String fileName) {
@@ -52,3 +64,5 @@ public class People {
         }
     }
 }
+//country name is the key and inside of that there is an arraylist of those people (from that country)
+//which would then be sorted alphabetically.
